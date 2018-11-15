@@ -17,9 +17,9 @@
 # Specify phone tech before including full_phone
 $(call inherit-product, vendor/omni/config/gsm.mk)
 
-$(call inherit-product, device/Huawei/TRT-LX1/full_TRT-LX1.mk)
+$(call inherit-product, device/huawei/london/full_london.mk)
 
 # Inherit some common Omni stuff.
 $(call inherit-product, vendor/omni/config/common.mk)
 
-PRODUCT_NAME := omni_TRT-LX1
+PRODUCT_NAME := omni_london
