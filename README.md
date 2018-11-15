@@ -1,11 +1,11 @@
 TeamWin Recovery Project
 
-Device configuration for Huawei Y7 (TRT-LX1)
+Device configuration for Huawei Y7 Prime 2018 (LDN-L21B)
 =====================================================
 
 Basic   | Spec Sheet
 -------:|:-------------------------
-CHIPSET | Qualcomm MSM8937 Snapdragon 435
+CHIPSET | Qualcomm MSM8937 Snapdragon 430
 GPU     | Adreno 505
-Shipped Android Version | Android 7.0
-Release Date | 2017
+Shipped Android Version | Android 8.0
+Release Date | April 2018
