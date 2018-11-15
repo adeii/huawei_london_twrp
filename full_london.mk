@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/mini_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Charger
@@ -38,8 +38,8 @@ PRODUCT_COPY_FILES += \
     bionic/libc/zoneinfo/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
 
 # Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := TRT-LX1
-PRODUCT_NAME := full_TRT-LX1
-PRODUCT_BRAND := Huawei
-PRODUCT_MODEL := Huawei Y7
+PRODUCT_DEVICE := london
+PRODUCT_NAME := full_london
+PRODUCT_BRAND := huawei
+PRODUCT_MODEL := Y7 Prime 2018
 PRODUCT_MANUFACTURER := Huawei
