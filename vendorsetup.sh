@@ -14,5 +14,5 @@
 # limitations under the License.
 #
 
-add_lunch_combo omni_TRT-LX1-userdebug
-add_lunch_combo omni_TRT-LX1-eng
+add_lunch_combo omni_london-userdebug
+add_lunch_combo omni_london-eng
