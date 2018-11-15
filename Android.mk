@@ -16,7 +16,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_DEVICE), TRT-LX1)
+ifeq ($(TARGET_DEVICE), london)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
