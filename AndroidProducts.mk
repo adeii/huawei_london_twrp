@@ -15,5 +15,5 @@
 #
 
 PRODUCT_MAKEFILES := \
-	$(LOCAL_DIR)/omni_TRT-LX1.mk \
-	$(LOCAL_DIR)/full_TRT-LX1.mk
+	$(LOCAL_DIR)/omni_london.mk \
+	$(LOCAL_DIR)/full_london.mk
