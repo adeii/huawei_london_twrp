@@ -14,14 +14,15 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/Huawei/TRT-LX1
+LOCAL_PATH := device/huawei/london
 
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := generic
+# TARGET_CPU_VARIANT := generic
+TARGET_CPU_VARIANT := cortex-a53
 
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv7-a-neon
@@ -40,10 +41,12 @@ TARGET_NO_BOOTLOADER := true
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci earlycon=msm_hsl_uart,0x78B0000 androidboot.selinux=permissive
-BOARD_KERNEL_PAGESIZE := 4096
+# BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci earlycon=msm_hsl_uart,0x78B0000 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci slub_min_objects=12 unmovable_isolate1=2:192M,3:224M,4:256M androidboot.selinux=enforcing buildvariant=eng
+BOARD_KERNEL_PAGESIZE := 2048
+BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
-BOARD_RAMDISK_OFFSET := 0x01000000
+BOARD_RAMDISK_OFFSET := 0x02000000
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/recovery/kernel
 
 # Encryption
@@ -53,12 +56,12 @@ TARGET_HW_DISK_ENCRYPTION := true
 TARGET_PROVIDES_KEYMASTER := true
 
 # Partitions
-BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3221225472
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 58846064640 # (58846081024-16384)
-BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
-BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
+BOARD_BOOTIMAGE_PARTITION_SIZE := 58720256
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 58720256
+BOARD_CACHEIMAGE_PARTITION_SIZE := 126877696
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2576980377
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 26628797235
+BOARD_PERSISTIMAGE_PARTITION_SIZE := 28835840
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 
 # Recovery
