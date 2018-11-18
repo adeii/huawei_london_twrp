@@ -1,0 +1,18 @@
+# stock recovery.fstab
+# device                                   mount point    fstype   [device2] [length=]
+
+/dev/block/bootdevice/by-name/system       /system         ext4    ro,barrier=1                                                    wait
+/dev/block/bootdevice/by-name/vendor       /vendor         ext4    ro,barrier=1                                                    wait
+/dev/block/bootdevice/by-name/product      /product        ext4    ro,barrier=1                                                    wait
+/dev/block/bootdevice/by-name/version      /version        ext4    ro,barrier=1                                                    wait
+/dev/block/bootdevice/by-name/cache        /cache          ext4    noatime,nosuid,nodev,barrier=1,data=ordered                     wait,check
+/dev/block/bootdevice/by-name/userdata     /data           f2fs    noatime,nosuid,nodev,discard,inline_data,inline_xattr     wait,check,length=-16384,fileencryption=aes-256-xts:aes-256-cts
+/dev/block/mmcblk1p1                       /sdcard         vfat    nosuid,nodev                                                    wait
+/dev/block/bootdevice/by-name/boot         /boot           emmc    defaults                                                        defaults
+/dev/block/bootdevice/by-name/recovery     /recovery       emmc    defaults                                                        defaults
+/dev/block/bootdevice/by-name/system       /newsys         ext4    ro,barrier=1                                                    wait
+/dev/block/bootdevice/by-name/cust         /cust           ext4    ro,nosuid,nodev,barrier=1,noauto_da_alloc,discard            wait,continue
+/dev/block/bootdevice/by-name/misc         /misc           emmc    defaults                                                        defaults
+/dev/block/bootdevice/by-name/modem        /firmware       vfat    ro,relatime                                                     wait
+/dev/block/bootdevice/by-name/log          /log            vfat    nosuid,nodev,uid=0,gid=1000,fmask=0002,dmask=0002            wait,check,continue
+/dev/block/sda1                            /usb            vfat    defaults                                                        defaults
