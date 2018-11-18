@@ -1,18 +1,18 @@
 #
 # ADDITIONAL_DEFAULT_PROPERTIES
 #
-ro.secure=1
+ro.secure=0
 security.perf_harden=1
-ro.adb.secure=1
+ro.adb.secure=0
 ro.allow.mock.location=0
-ro.debuggable=0
+ro.debuggable=1
 #
 # BOOTIMAGE_BUILD_PROPERTIES
 #
 ro.bootimage.build.date=Sat Aug 11 11:22:20 CST 2018
 ro.bootimage.build.date.utc=1533957740
 ro.bootimage.build.fingerprint=Huawei/generic_a53/generic_a53:8.0.0/OPR6.170623.013/root08111120:user/test-keys
-persist.sys.usb.config=none
+persist.sys.usb.config=adb,mtp
 #
 # ADDITIONAL VENDOR DEFAULT PROPERTIES
 #
@@ -57,7 +57,7 @@ ro.product.cpu.abi=arm64-v8a
 ro.product.cpu.abilist=arm64-v8a,armeabi-v7a,armeabi
 ro.product.cpu.abilist32=armeabi-v7a,armeabi
 ro.product.cpu.abilist64=arm64-v8a
-ro.product.manufacturer=unknown
+ro.product.manufacturer=Huawei
 ro.product.locale=en-US
 ro.wifi.channels=
 # Do not try to parse description, fingerprint, or thumbprint
