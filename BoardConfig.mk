@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/huawei/london
+LOCAL_PATH := device/huawei/AUM-L29
 
 # Architecture
 TARGET_ARCH := arm64
@@ -47,7 +47,7 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET := 0x02000000
-TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/recovery/kernel
+TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/recovery/recovery.img-zImage
 
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
