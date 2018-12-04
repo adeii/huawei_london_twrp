@@ -4,7 +4,6 @@
 # This is a common source of Android security bugs.
 #
 
-import /init.magisk.rc
 import /init.environ.rc
 # import /init.usb.rc
 import /init.${ro.usb.config.file}.rc
@@ -161,7 +160,6 @@ on init
     # sets up initial cpusets for ActivityManager
     mkdir /dev/cpuset
     mount cgroup none /dev/cpuset cpuset,cpuset_noprefix
-    mount cgroup none /dev/cpuset remount blkio,cpuset,cpuset_noprefix
 
     # this ensures that the cpusets are present and usable, but the device's
     # init.rc must actually set the correct cpus
@@ -259,6 +257,37 @@ on init
     write /dev/iolimit/heavyio/iolimit.read_limit 1048576
     write /dev/iolimit/heavyio/iolimit.write_limit 1048576
     write /dev/iolimit/heavyio/iolimit.switching 0
+
+# sets up initial blkio for ActivityManger
+    mkdir /dev/blkio
+    mount cgroup none /dev/blkio blkio
+
+    mkdir /dev/blkio/foreground
+    mkdir /dev/blkio/background
+    mkdir /dev/blkio/system-background
+    mkdir /dev/blkio/key-background
+    mkdir /dev/blkio/top-app
+
+    chown system system /dev/blkio
+    chown system system /dev/blkio/foreground
+    chown system system /dev/blkio/background
+    chown system system /dev/blkio/system-background
+    chown system system /dev/blkio/key-background
+    chown system system /dev/blkio/top-app
+
+    chown system system /dev/blkio/tasks
+    chown system system /dev/blkio/foreground/tasks
+    chown system system /dev/blkio/background/tasks
+    chown system system /dev/blkio/system-background/tasks
+    chown system system /dev/blkio/key-background/tasks
+    chown system system /dev/blkio/top-app/tasks
+
+    chmod 0664 /dev/blkio/tasks
+    chmod 0664 /dev/blkio/foreground/tasks
+    chmod 0664 /dev/blkio/background/tasks
+    chmod 0664 /dev/blkio/system-background/tasks
+    chmod 0664 /dev/blkio/key-background/tasks
+    chmod 0664 /dev/blkio/top-app/tasks
 
     # qtaguid will limit access to specific data based on group memberships.
     #   net_bw_acct grants impersonation of socket owners.
@@ -723,10 +752,13 @@ on boot
     chown system system /sys/class/leds/button-backlight/brightness
     chown system system /sys/class/leds/jogball-backlight/brightness
     chown system system /sys/class/leds/red/brightness
+    chmod  660  /sys/class/leds/red/brightness
     chown system system /sys/class/leds/red/blink
     chown system system /sys/class/leds/green/brightness
+    chmod  660  /sys/class/leds/green/brightness
     chown system system /sys/class/leds/green/blink
     chown system system /sys/class/leds/blue/brightness
+    chmod  660  /sys/class/leds/blue/brightness
     chown system system /sys/class/leds/blue/blink
     chown system system /sys/class/leds/red/device/grpfreq
     chown system system /sys/class/leds/red/device/grppwm

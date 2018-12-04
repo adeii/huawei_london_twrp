@@ -186,6 +186,8 @@ com.huawei.hwhf.IHwhfService  u:object_r:hwhf_service:s0
 BootAnimationBinderServer           u:object_r:bootanim_server_service:s0
 hwsync                   u:object_r:hwsync_service:s0
 HwHiShowManagerService           u:object_r:hwhishowmanagerservice_service:s0
+dtvservice             u:object_r:dtv_service:s0
+dtv.trmp               u:object_r:dtv_trmpservice:s0
 qti.security.seemp                             u:object_r:seemp_service:s0
 seempservice                                   u:object_r:seemp_service:s0
 qti.security.seempspa                          u:object_r:seemp_service:s0

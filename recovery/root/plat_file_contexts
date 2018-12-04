@@ -108,8 +108,8 @@
 /dev/graphics(/.*)?		u:object_r:graphics_device:s0
 /dev/spdif_out.*		u:object_r:audio_device:s0
 /dev/rpmsg-omx[0-9]		u:object_r:rpmsg_device:s0
-/data/storaged(/.*)?		u:object_r:storaged_data_file:s0
 /data/misc/qvr(/.*)?		u:object_r:qvrd_data_file:s0
+/data/storaged(/.*)?		u:object_r:storaged_data_file:s0
 /data/app-asec(/.*)?		u:object_r:asec_image_file:s0
 /cache/fotapkg(/.*)?		u:object_r:fota_cache_file:s0
 /data/misc/net(/.*)?		u:object_r:net_data_file:s0
@@ -285,8 +285,8 @@
 /system/bin/vdc		u:object_r:vdc_exec:s0
 /system/bin/smbd		u:object_r:smbd_exec:s0
 /system/bin/nmbd		u:object_r:nmbd_exec:s0
-/system/bin/dpmd		u:object_r:dpmd_exec:s0
 /dev/socket/dpmd		u:object_r:dpmd_socket:s0
+/system/bin/dpmd		u:object_r:dpmd_exec:s0
 /dev/hwlog_dubai		u:object_r:dubai_log_device:s0
 /dev/socket/netd		u:object_r:netd_socket:s0
 /dev/socket/rild		u:object_r:rild_socket:s0
@@ -368,8 +368,8 @@
 /system/bin/fsck\.f2fs		--	u:object_r:fsck_exec:s0
 /dev/socket/qvrservice		u:object_r:qvrd_socket:s0
 /dev/socket/dpmwrapper		u:object_r:dpmwrapper_socket:s0
-/system/bin/dun-server		u:object_r:dun-server_exec:s0
 /system/bin/smcinvoked		u:object_r:smcinvoke_daemon_exec:s0
+/system/bin/dun-server		u:object_r:dun-server_exec:s0
 /system/bin/qvrservice		u:object_r:qvrd_exec:s0
 /system/bin/wfdservice		u:object_r:wfdservice_exec:s0
 /dev/socket/rild-debug		u:object_r:rild_debug_socket:s0
@@ -381,6 +381,7 @@
 /system/bin/logwrapper		u:object_r:system_file:s0
 /sys/power/wake_unlock		--	u:object_r:sysfs_wake_lock:s0
 /system/bin/fsck_msdos		--	u:object_r:fsck_exec:s0
+/system/bin/dtv_decrypt		u:object_r:dtv_decrypt_exec:s0
 /sys/kernel/oases/state		u:object_r:hwhfd_public_sysfs:s0
 /nonplat_seapp_contexts		u:object_r:seapp_contexts_file:s0
 /plat_property_contexts		u:object_r:property_contexts_file:s0
