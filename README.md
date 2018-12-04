@@ -1,6 +1,6 @@
 TeamWin Recovery Project
 
-Device configuration for Huawei Y7 Prime 2018 (LDN-L21B)
+Device configuration for Huawei Honor 7A 2018 (AUM-L29)
 =====================================================
 
 Basic   | Spec Sheet
