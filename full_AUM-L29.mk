@@ -38,8 +38,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #    bionic/libc/zoneinfo/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
 
 # Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := london
-PRODUCT_NAME := full_london
-PRODUCT_BRAND := huawei
-PRODUCT_MODEL := Y7 Prime 2018
+PRODUCT_DEVICE := AUM-L29
+PRODUCT_NAME := full_AUM-L29
+PRODUCT_BRAND := Honor
+PRODUCT_MODEL := Honor 7A
 PRODUCT_MANUFACTURER := Huawei
