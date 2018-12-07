@@ -1,18 +1,25 @@
-# stock recovery.fstab
-# device                                   mount point    fstype   [device2] [length=]
+# Android fstab file. Stock with few changes.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+# /Full backup
+/dev/block/mmcblk0                         /mmcblk0        emmc    flags=display="Full dump";backup=1;flashimg
 
-/dev/block/bootdevice/by-name/system       /system         ext4    ro,barrier=1                                                    wait
-/dev/block/bootdevice/by-name/vendor       /vendor         ext4    ro,barrier=1                                                    wait
-/dev/block/bootdevice/by-name/product      /product        ext4    ro,barrier=1                                                    wait
-/dev/block/bootdevice/by-name/version      /version        ext4    ro,barrier=1                                                    wait
-/dev/block/bootdevice/by-name/cache        /cache          ext4    noatime,nosuid,nodev,barrier=1,data=ordered                     wait,check
+#device                                 mount point      fstype    [device2] [length=]
+/dev/block/bootdevice/by-name/system       /system         ext4    flags=display="System";backup=1  
+/dev/block/bootdevice/by-name/vendor       /vendor         ext4    flags=display="Vendor";backup=1
+/dev/block/bootdevice/by-name/product      /product        ext4    flags=display="Product";backup=1
+/dev/block/bootdevice/by-name/version      /version        ext4    flags=display="Version";backup=1
+/dev/block/bootdevice/by-name/cache        /cache          ext4    flags=display="Cache";backup=1;wipeingui
+/dev/block/bootdevice/by-name/boot         /boot           emmc    flags=display="Boot";flashimg;backup=1
+/dev/block/bootdevice/by-name/recovery     /recovery       emmc    flags=display="Recovery";flashimg;backup=1
+/dev/block/bootdevice/by-name/system       /newsys         ext4    flags=backup=1;flashimg
+/dev/block/bootdevice/by-name/cust         /cust           ext4    ro,nosuid,nodev,barrier=1,noauto_da_alloc,discard
+/dev/block/bootdevice/by-name/misc         /misc           emmc    flags=display="Misc";backup=1
+/dev/block/bootdevice/by-name/modem        /firmware       vfat    ro,relatime
+/dev/block/bootdevice/by-name/log          /log            vfat    nosuid,nodev,uid=0,gid=1000,fmask=0002,dmask=0002
+/dev/block/bootdevice/by-name/aboot        /aboot          emmc    flags=display="Bootloader";backup=1
+/dev/block/mmcblk0p43                      /recovery_ramdisk  emmc    flags=display="Rec_RamDisk";flashimg;backup=1
+/dev/block/mmcblk0p42                      /ramdisk           emmc    flags=display="Boot_RamDisk";flashimg;backup=1
+/dev/block/sda1                            /usb-otg        vfat    flags=display="USB Storage";storage;wipeingui;removable
+/dev/block/mmcblk1p1                       /external_sd    vfat    flags=display="SD card";removable;storage
 /dev/block/bootdevice/by-name/userdata     /data           f2fs    noatime,nosuid,nodev,discard,inline_data,inline_xattr     wait,check,length=-16384,fileencryption=aes-256-xts:aes-256-cts
-/dev/block/mmcblk1p1                       /sdcard         vfat    nosuid,nodev                                                    wait
-/dev/block/bootdevice/by-name/boot         /boot           emmc    defaults                                                        defaults
-/dev/block/bootdevice/by-name/recovery     /recovery       emmc    defaults                                                        defaults
-/dev/block/bootdevice/by-name/system       /newsys         ext4    ro,barrier=1                                                    wait
-/dev/block/bootdevice/by-name/cust         /cust           ext4    ro,nosuid,nodev,barrier=1,noauto_da_alloc,discard            wait,continue
-/dev/block/bootdevice/by-name/misc         /misc           emmc    defaults                                                        defaults
-/dev/block/bootdevice/by-name/modem        /firmware       vfat    ro,relatime                                                     wait
-/dev/block/bootdevice/by-name/log          /log            vfat    nosuid,nodev,uid=0,gid=1000,fmask=0002,dmask=0002            wait,check,continue
-/dev/block/sda1                            /usb            vfat    defaults                                                        defaults
