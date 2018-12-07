@@ -1,4 +1,4 @@
-TeamWin Recovery Project
+TeamWin Recovery Project (use omni-7.1 branch for porting from TRT-Lxx)
 
 Device configuration for Huawei Y7 Prime 2018 (LDN-L21B)
 =====================================================
