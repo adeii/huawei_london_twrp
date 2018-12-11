@@ -17,9 +17,9 @@
 # Specify phone tech before including full_phone
 $(call inherit-product, vendor/omni/config/gsm.mk)
 
-$(call inherit-product, device/huawei/AUM-L29/full_AUM-L29.mk)
+$(call inherit-product, device/honor/aum/full_aum.mk)
 
 # Inherit some common Omni stuff.
 $(call inherit-product, vendor/omni/config/common.mk)
 
-PRODUCT_NAME := omni_AUM-L29
+PRODUCT_NAME := omni_aum
