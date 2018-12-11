@@ -38,8 +38,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #    bionic/libc/zoneinfo/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
 
 # Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := AUM-L29
-PRODUCT_NAME := full_AUM-L29
+PRODUCT_DEVICE := aum
+PRODUCT_NAME := full_aum
 PRODUCT_BRAND := Honor
 PRODUCT_MODEL := Honor 7A
 PRODUCT_MANUFACTURER := Huawei
