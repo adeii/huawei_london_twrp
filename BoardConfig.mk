@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/huawei/AUM-L29
+LOCAL_PATH := device/honor/aum
 
 # Architecture
 TARGET_ARCH := arm64
