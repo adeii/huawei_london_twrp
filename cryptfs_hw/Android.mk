@@ -30,6 +30,7 @@ endif
 
 # USE_ICE_FOR_STORAGE_ENCRYPTION would be true in future if
 # TARGET_USE_EMMC_USE_ICE is set
+# since Y7 2018 use aes-256-xts...how to define it?
 ifeq ($(TARGET_USE_UFS_ICE),true)
 LOCAL_CFLAGS += -DUSE_ICE_FOR_STORAGE_ENCRYPTION
 endif
