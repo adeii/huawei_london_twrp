@@ -46,7 +46,7 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET := 0x02000000
-TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/recovery/kernel
+TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/recovery/dummykernel
 
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
@@ -59,7 +59,7 @@ TARGET_HW_DISK_ENCRYPTION := true
 TW_USE_NEW_MINADBD := true
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_FBE := true
-TARGET_CRYPTFS_HW_PATH := device/huawei/london/cryptfs_hw #work on Diego, maybe old for London
+#TARGET_CRYPTFS_HW_PATH := device/huawei/london/cryptfs_hw #works on Diego, use from device/qcom/common 8.0
 
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
@@ -86,7 +86,6 @@ BOARD_USES_QCOM_HARDWARE := true
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_EXTRA_LANGUAGES := true
 TW_THEME := portrait_hdpi
-TW_INCLUDE_CRYPTO := true
 TW_MAX_BRIGHTNESS := 255
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_SCREEN_BLANK_ON_BOOT := true
@@ -105,7 +104,8 @@ TW_INCLUDE_FUSE_EXFAT := true
 
 # NTFS Support
 TW_INCLUDE_FUSE_NTFS := true
+TW_INCLUDE_NTFS_3G := true
 
 # Treble
-BOARD_NEEDS_VENDORIMAGE_SYMLINK := false # not sure about it
+BOARD_NEEDS_VENDORIMAGE_SYMLINK := true # not sure about it
 TARGET_COPY_OUT_VENDOR := vendor #or system/vendor in TWRP, also not sure, if above is TRUE
