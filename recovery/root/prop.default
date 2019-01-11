@@ -6,6 +6,10 @@ security.perf_harden=1
 ro.adb.secure=0
 ro.allow.mock.location=0
 ro.debuggable=1
+ro.crypto.state=encrypted
+ro.crypto.type=file
+vold.decrypt=trigger_restart_min_framework
+#vold.post_fs_data_done=1
 #
 # BOOTIMAGE_BUILD_PROPERTIES
 #
