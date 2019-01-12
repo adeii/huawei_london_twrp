@@ -26,8 +26,8 @@ PRODUCT_PACKAGES += \
     libcryptfs_hw
 
 # Kernel
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/recovery/kernel:kernel
+#PRODUCT_COPY_FILES += \
+#    $(LOCAL_PATH)/recovery/kernel:kernel # nope, no more dependancies cycle
 
 # sdcardfs
 PRODUCT_PROPERTY_OVERRIDES += \
