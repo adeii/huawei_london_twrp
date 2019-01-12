@@ -21,9 +21,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 PRODUCT_PACKAGES += \
     charger_res_images
 
-# Encryption
-PRODUCT_PACKAGES += \
-    libcryptfs_hw
+# Encryption no more, use from /device/qcom/common
+#PRODUCT_PACKAGES += \
+#    libcryptfs_hw
 
 # Kernel
 #PRODUCT_COPY_FILES += \
