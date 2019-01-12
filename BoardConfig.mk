@@ -104,7 +104,7 @@ TW_INCLUDE_FUSE_EXFAT := true
 
 # NTFS Support
 TW_INCLUDE_FUSE_NTFS := true
-TW_INCLUDE_NTFS_3G := true
+#TW_INCLUDE_NTFS_3G := true #make dependancies chaos, use prebuilt
 
 # Treble
 BOARD_NEEDS_VENDORIMAGE_SYMLINK := true # not sure about it
