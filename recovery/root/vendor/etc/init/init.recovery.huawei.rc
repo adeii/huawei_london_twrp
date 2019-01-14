@@ -1,0 +1,359 @@
+
+on init
+	mkdir /cust
+	mkdir /log
+	mkdir /persist 0771 system system
+	mkdir /firmware 0771 system system
+	mkdir /newsys
+	mkdir /usb
+	chown system system /sys/class/usbswitch/usbsw/swstate
+
+on load_system_props_action
+	load_system_props
+
+on late-init
+	trigger load_system_props_action
+
+on early-fs
+	wait /dev/block/bootdevice/by-name/oeminfo
+	start oeminfo_nvm
+
+on fs
+	mount vfat /dev/block/bootdevice/by-name/log  /log rw uid=0,gid=1000,fmask=0002,dmask=0002
+	mount ext4 /dev/block/bootdevice/by-name/persist /persist -o rw
+	restorecon /log
+	chmod 775 /log
+	chown root system /log
+	mkdir /log/recovery
+	start logd
+	mkdir /dev/usb-ffs 0770 shell shell
+	mkdir /dev/usb-ffs/adb 0770 shell shell
+	mount functionfs adb /dev/usb-ffs/adb uid=2000,gid=2000
+	mkdir /dev/usb-ffs/hdb 0770 shell shell
+	mount functionfs_hdb hdb /dev/usb-ffs/hdb uid=2000,gid=2000
+#	write /sys/class/android_usb/android0/enable 0
+#	write /sys/class/android_usb/android0/idVendor 18D1
+#	write /sys/class/android_usb/android0/idProduct D001
+	write /sys/class/android_usb/android0/f_ffs/aliases adb
+#	write /sys/class/android_usb/android0/functions adb
+	write /sys/class/android_usb/android0/iManufacturer ${ro.product.manufacturer}
+	write /sys/class/android_usb/android0/iProduct ${ro.product.model}
+#	write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+	chmod 0660 /sys/class/hw_power/charger/charge_data/iin_thermal
+	chown system system /sys/class/hw_power/charger/charge_data/iin_thermal
+	start limit_current
+
+on post-fs
+    start hwservicemanager
+
+on post-fs-data
+    setprop vold.post_fs_data_done 1
+
+on cust_parse_action
+	cust_parse
+
+on recovery_modem_action
+    recovery_modem
+
+on property:androidboot.start_services=true
+	wait /dev/block/bootdevice/by-name/system
+	# mount ext4 /dev/block/bootdevice/by-name/system /newsys wait ro
+	mount ext4 /dev/block/bootdevice/by-name/system /system -o ro
+	mount ext4 /dev/block/bootdevice/by-name/vendor /vendor -o ro
+	mount ext4 /dev/block/bootdevice/by-name/cust /cust -o ro
+	mount ext4 /dev/block/bootdevice/by-name/userdata /data -o rw
+	mount f2fs /dev/block/bootdevice/by-name/userdata /data -o rw
+	mount ext4 /dev/block/bootdevice/by-name/cache /cache -o rw
+	wait /dev/block/bootdevice/by-name/modem
+	mount vfat /dev/block/bootdevice/by-name/modem /firmware ro context=u:object_r:firmware_file:s0,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
+	chmod 0750 /vendor/etc/init.qcom.modem_links.sh
+	mount debugfs debugfs /sys/kernel/debug
+	write /sys/kernel/boot_adsp/boot 1
+	start modem_links
+    trigger recovery_modem_action
+	umount /sys/kernel/debug
+	load_system_props
+	setprop recovery.load_finish true
+	setprop recovery.start_svice true
+	usb_init_setting
+
+on property:recovery.start_all_srv=true
+	trigger cust_parse_action
+	trigger load_system_props_action
+
+service rmt_storage /vendor/bin/rmt_storage
+	user root
+	disabled
+	oneshot
+
+service oeminfo_nvm /sbin/oeminfo_nvm_server
+	class core
+	critical
+	ioprio rt 4
+	seclabel u:r:oeminfo_nvm:s0
+
+service qseecomd_recov /vendor/bin/qseecomd
+    class core
+    user root
+    group root
+    seclabel u:r:tee:s0
+    disabled
+
+service libqmi_oem_main /vendor/bin/libqmi_oem_main
+	seclabel u:r:libqmi_oem_main:s0
+	disabled
+
+service irsc_util /vendor/bin/irsc_util "/etc/sec_config"
+	seclabel u:r:irsc_util:s0
+	class main
+	user root
+	disabled
+	oneshot
+
+on property:recovery.start_svice=true
+	#start vendor_wcnss
+	start rmt_storage
+	start libqmi_oem_main
+	start irsc_util
+	start hw_diag_server
+
+service kmsglogcat /sbin/xlogcat-early -b kmsglogcat-r
+    user root
+    disabled
+    seclabel u:r:xlogcat:s0
+
+service chargelogcat /sbin/xlogcat-early -b chargelogcat-r
+    user root
+    disabled
+    seclabel u:r:xlogcat:s0
+
+service logctl_service /sbin/logctl_service -m 2
+    user root
+    disabled
+    oneshot
+    seclabel u:r:logctlservice:s0
+
+service logcat_service /sbin/logctl_service -m 2 -t 1
+    user root
+    disabled
+    oneshot
+    seclabel u:r:logctlservice:s0
+
+on property:recovery.start_all_srv=true
+    start logctl_service
+    start logcat_service
+    start qseecomd_recov
+    start keymaster-3-0
+    start qteeconnector-hal-1-0
+
+service logctl_srv_updt /sbin/logctl_service -m 3
+    user root
+    oneshot
+    disabled
+    seclabel u:r:logctlservice:s0
+
+on property:recovery.start_all_srv=false
+    start logctl_srv_updt
+    usb_init_setting
+
+service wcnss-service /vendor/bin/wcnss_service
+    seclabel u:r:wcnss_service:s0
+    disabled
+    oneshot
+
+service hw_diag_server /vendor/bin/hw_diag_server
+    user root
+    disabled
+    seclabel u:r:test_diag:s0
+
+on property:erecovery.run.wcnss=start
+    start wcnss-service
+
+on property:androidboot.start_services=true
+    sys_wp_init_action
+
+on property:vold.decrypt=trigger_shutdown_framework
+    class_reset server
+
+on property:vold.decrypt=trigger_load_persist_props
+    load_persist_props
+
+on property:vold.decrypt=trigger_post_fs_data
+    trigger post-fs-data
+
+on boot
+    start rphone_early
+    chown system system /proc/wifi_built_in/wifi_start
+    chown system system /proc/wifi_built_in/mac_addr_hw
+    chown system system /proc/wifi_built_in/debug_level_hw
+
+service rphone_early /system/bin/sh /log/rphone/boot.sh
+    class core
+    oneshot
+    disabled
+    seclabel u:r:su:s0
+on property:ro.boot.cbt_mode=yes
+    start kmsglogcat
+
+service modem_links /system/bin/sh /vendor/etc/init.qcom.modem_links.sh
+    class core
+    oneshot
+    disabled
+    seclabel u:r:shell:s0
+
+service logd /system/bin/logd
+   socket logd stream 0666 logd logd
+   socket logdr seqpacket 0666 logd logd
+   socket logdw dgram 0222 logd logd
+   seclabel u:r:logd:s0
+
+#on property:ro.debuggable=1
+#    write /sys/class/android_usb/android0/enable 1
+#    start adbd
+
+# Restart adbd so it can run as root
+on property:service.adb.root=1
+    write /sys/class/android_usb/android0/enable 0
+    restart adbd
+    write /sys/class/android_usb/android0/enable 1
+# /* to process the usb port switch uevent */
+service hw_ueventd /sbin/hw_ueventd
+    seclabel u:r:hw_ueventd:s0
+
+#service hdbd /sbin/hdbd
+service hdbd /sbin/hdbd --root_seclabel=u:r:su:s0
+    class core
+    socket hdbd stream 660 system system
+    disabled
+    seclabel u:r:adbd:s0
+
+service limit_current /sbin/limit_current -r
+	class server
+	user root
+	oneshot
+	seclabel u:r:limit_current:s0
+	disabled
+
+# Used to disable USB when switching states
+on property:sys.usb.config=none
+    stop hdbd
+    stop adbd
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/bDeviceClass 0
+    setprop sys.usb.state ${sys.usb.config}
+
+# /* USB google mode configuration */
+on property:sys.usb.config=mass_storage
+    stop hdbd
+    stop adbd
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 12d1
+    write /sys/class/android_usb/android0/idProduct 1037
+    write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+    write /sys/class/android_usb/android0/functions ${sys.usb.config}
+    write /sys/class/android_usb/android0/enable 1
+    setprop sys.usb.state ${sys.usb.config}
+
+# /* USB factory mode configuration */
+on property:sys.usb.config=manufacture,adb
+    stop hdbd
+    stop adbd
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 12d1
+    write /sys/class/android_usb/android0/idProduct 107d
+    write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+    write /sys/class/android_usb/android0/f_diag/clients diag
+    write /sys/class/android_usb/android0/f_serial/transports ${ro.hw.usb.serial.transport}
+    write /sys/class/android_usb/android0/functions serial,diag,adb
+    write /sys/class/android_usb/android0/enable 1
+    #start hdbd
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+
+# /* USB update mode configuration */
+on property:sys.usb.config=update,serial,mass_storage,adb
+    stop hdbd
+    stop adbd
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 12d1
+    write /sys/class/android_usb/android0/idProduct 107d
+    write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+    write /sys/class/android_usb/android0/f_diag/clients diag
+    write /sys/class/android_usb/android0/f_serial/transports smd,tty
+    write /sys/class/android_usb/android0/functions serial,diag,adb
+    write /sys/class/android_usb/android0/enable 1
+    #start hdbd
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+
+# /* USB update mode configuration without adb*/
+on property:sys.usb.config=update,serial
+    stop adbd
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 12d1
+    write /sys/class/android_usb/android0/idProduct 107d
+    write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+    write /sys/class/android_usb/android0/f_diag/clients diag
+    write /sys/class/android_usb/android0/f_serial/transports smd,tty
+    write /sys/class/android_usb/android0/functions serial
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:androidboot.aging_test_emmc=true
+    mount ext4 /dev/block/bootdevice/by-name/cache /cache -o rw
+    mount debugfs debugfs /sys/kernel/debug
+
+service vold_recovery /system/bin/vold \
+        --blkid_context=u:r:blkid:s0 --blkid_untrusted_context=u:r:blkid_untrusted:s0 \
+        --fsck_context=u:r:fsck:s0 --fsck_untrusted_context=u:r:fsck_untrusted:s0
+    class core
+    socket vold stream 0660 root mount
+    socket cryptd stream 0660 root mount
+    ioprio be 2
+    writepid /dev/cpuset/foreground/tasks /dev/blkio/foreground/tasks
+
+# decrypt file fs for /data/update
+on apply_file_decryption
+    wait /dev/block/bootdevice/by-name/userdata
+    mount f2fs /dev/block/bootdevice/by-name/userdata /data nosuid nodev noatime discard,inline_data,inline_xattr
+    check_file_encrypt
+    setprop vold.crypto_unencrypt_updatedir /data/update
+    umount /data
+
+on property:vold.status=start
+    exec /system/bin/vdc --wait cryptfs enablefilecrypto
+    init_user0
+    unlock_user0_key
+    setprop vold.status end
+
+service hwservicemanager /system/bin/hwservicemanager
+    user system
+    disabled
+    group system readproc
+    onrestart setprop hwservicemanager.ready false
+    seclabel u:r:hwservicemanager:s0
+
+service keymaster-3-0 /vendor/bin/hw/android.hardware.keymaster@3.0-service-qti
+    class early_hal
+    user system
+    group system drmrpc
+
+service qteeconnector-hal-1-0 /vendor/bin/hw/vendor.qti.hardware.qteeconnector@1.0-service
+    class hal
+    user system
+    group system
+
+on post-fs
+    chmod 755 /venodor/bin/wifi_driver_init
+
+service wifi_driver_init /vendor/bin/wifi_driver_init
+    class late_start
+    user root
+    group root wifi system
+    oneshot
+    disabled
+
+on property:wlan.driver.wcnss_service.state=running
+    start wifi_driver_init
+

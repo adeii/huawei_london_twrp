@@ -17,9 +17,21 @@
 # Specify phone tech before including full_phone
 $(call inherit-product, vendor/omni/config/gsm.mk)
 
-$(call inherit-product, device/honor/aum/full_aum.mk)
-
 # Inherit some common Omni stuff.
 $(call inherit-product, vendor/omni/config/common.mk)
 
+# Inherit from the common Open Source product configuration
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+
+# Inherit language packages
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+
+# Time Zone data for Recovery
+PRODUCT_COPY_FILES += \
+    bionic/libc/zoneinfo/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
+
 PRODUCT_NAME := omni_aum
+PRODUCT_DEVICE := aum
+PRODUCT_BRAND := Honor
+PRODUCT_MODEL := Honor 7A
+PRODUCT_MANUFACTURER := Huawei

@@ -15,5 +15,5 @@
 #
 
 PRODUCT_MAKEFILES := \
-	$(LOCAL_DIR)/omni_aum.mk \
-	$(LOCAL_DIR)/full_aum.mk
+	$(LOCAL_DIR)/omni_aum.mk
+	
