@@ -11,7 +11,8 @@ GPU     | Adreno 505
 Shipped Android Version | Android 8.0
 
 =======================================================
-current error on /sbin/qseecomd
+
+current error on /sbin/qseecomd : 
 libc: Set property "sys.listeners.registered" to "true"
 libc: Unable to set property "sys.listeners.registered" to "true": recv failed;
 errno=-1 (Unknown error -1)
