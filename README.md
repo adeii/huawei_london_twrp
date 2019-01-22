@@ -1,4 +1,5 @@
 TeamWin Recovery Project (use omni-7.1 branch for porting from TRT-Lxx)
+Use force 32-bit TWRP, omni-7.1 --- it boots!
 
 Device configuration for Huawei Y7 Prime 2018 (LDN-L21B)
 =====================================================
@@ -9,6 +10,12 @@ CHIPSET | Qualcomm MSM8937 Snapdragon 430
 GPU     | Adreno 505
 Shipped Android Version | Android 8.0
 Release Date | April 2018
+
+Fix building:
+
+         mkdir out/target/product/london/recovery     
+         mkdir out/target/product/london/recovery/root
+         touch out/target/product/london/recovery/root/file_contexts
 
 if omni-8.0 add:
 
