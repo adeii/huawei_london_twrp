@@ -14,12 +14,7 @@ Release Date | April 2018
     1 - repo init --depth=1 -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-7.1
     2 - repo sync --force-sync
     3 - git clone https://github.com/adeii/huawei_london_twrp.git -b omni-7.1 device/huawei/london
-    4 - . build/envsetup.sh; lunch omni_london-eng;
-    5 - export ALLOW_MISSING_DEPENDENCIES=true; export LC_ALL=C
-    6 - . build/envsetup.sh; lunch omni_london-eng
-    7 - patch files, exp. uncheck all in vendor/omni/sepolicy/property_contexts and/or system/core
-    7 - mka adbd recoveryimage
-    
+    4 - . build/envsetup.sh; lunch omni_london-eng; mka recoveryimage
 -----
 Experiments about adding FBE decrypting of Internal Storage.
 android_system_core/init/builtins.cpp
