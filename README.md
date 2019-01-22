@@ -1,4 +1,5 @@
-TeamWin Recovery Project (use omni-7.1 branch for porting from TRT-Lxx)
+TeamWin Recovery Project
+omni-7.1 branch, still no working MTP and FBE
 
 Device configuration for Huawei Y7 Prime 2018 (LDN-L21B)
 =====================================================
@@ -10,11 +11,6 @@ GPU     | Adreno 505
 Shipped Android Version | Android 8.0
 Release Date | April 2018
 
-if omni-8.0 add:
-
-    export ALLOW_MISSING_DEPENDENCIES=true
-    export LC_ALL=C
-    mka adbd recoveryimage
 -----
 Experiments about adding FBE decrypting of Internal Storage.
 android_system_core/init/builtins.cpp
