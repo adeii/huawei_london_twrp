@@ -1,7 +1,7 @@
-TeamWin Recovery Project (use omni-7.1 branch for porting from TRT-Lxx)
-Use force 32-bit TWRP, omni-7.1 --- it boots!
+TeamWin Recovery Project
+64-bit TWRP, omni-7.1, FBE and MTP still do not work
 
-Device configuration for Huawei Y7 Prime 2018 (LDN-L21B)
+Device configuration for Huawei Y7 Prime 2018 (LDN-L21B, codename: london)
 =====================================================
 
 Basic   | Spec Sheet
@@ -9,19 +9,12 @@ Basic   | Spec Sheet
 CHIPSET | Qualcomm MSM8937 Snapdragon 430
 GPU     | Adreno 505
 Shipped Android Version | Android 8.0
-Release Date | April 2018
 
-Fix building:
-
-         mkdir out/target/product/london/recovery     
-         mkdir out/target/product/london/recovery/root
-         touch out/target/product/london/recovery/root/file_contexts
-
-if omni-8.0 add:
-
-    export ALLOW_MISSING_DEPENDENCIES=true
-    export LC_ALL=C
-    mka adbd recoveryimage
+=======================================================
+current error on /sbin/qseecomd
+libc: Set property "sys.listeners.registered" to "true"
+libc: Unable to set property "sys.listeners.registered" to "true": recv failed;
+errno=-1 (Unknown error -1)
 -----
 Experiments about adding FBE decrypting of Internal Storage.
 android_system_core/init/builtins.cpp
