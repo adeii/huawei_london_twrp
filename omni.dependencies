@@ -3,12 +3,6 @@
     "remote":"github",
     "repository": "TeamWin/android_device_qcom_common",
     "target_path": "device/qcom/common",
-    "revision":"android-8.0"
-  },
-  {
-    "remote":"github",
-    "repository": "omnirom/android_external_ntfs-3g",
-    "target_path": "external/ntfs-3g",
-    "revision":"android-8.1"
+    "revision":"android-7.1"
   }
 ]

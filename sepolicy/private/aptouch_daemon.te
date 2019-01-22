@@ -1,0 +1,2 @@
+#allow aptouch_daemon aptouch_daemon_service:service_manager add;
+

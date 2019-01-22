@@ -1,0 +1,16 @@
+domain_trans(init, rootfs, adbd)
+allow init userdata_block_device:blk_file relabelto;
+allow init userdata_block_device:lnk_file relabelto;
+
+allow init dubai_log_device:chr_file write;
+allow init hisee_data_file:filesystem { relabelto relabelfrom mount };
+
+allow init ram_device:blk_file write;
+allow init splash2_data_file:filesystem getattr;
+
+allow init device:chr_file { getattr };
+
+#allow init teecd_data_file:filesystem relabelto;
+
+allow init bfm_device:chr_file { getattr open ioctl write };
+

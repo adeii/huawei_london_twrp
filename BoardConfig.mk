@@ -18,17 +18,21 @@ LOCAL_PATH := device/huawei/london
 
 # Architecture
 TARGET_ARCH := arm64
-TARGET_ARCH_VARIANT := armv8-a
+TARGET_NO_BOOTLOADER := true
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
+TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_VARIANT := generic
-#TARGET_CPU_VARIANT := cortex-a53 # Stock default.prop said generic_a53
 
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv7-a-neon
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
+
+TARGET_USES_64_BIT_BINDER := true
+ARCH_ARM_HAVE_TLS_REGISTER := true
+
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8937
@@ -48,18 +52,20 @@ BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET := 0x02000000
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/recovery/dummykernel
 
-TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_HEADER_ARCH := arm64
-#BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb #No any image for London
+#TARGET_KERNEL_ARCH := arm64
+#TARGET_KERNEL_HEADER_ARCH := arm64
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/aarch64/aarch64-linux-android-4.9/bin
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
+BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/public
+include vendor/omni/sepolicy/sepolicy.mk
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
 TW_USE_NEW_MINADBD := true
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_FBE := true
-#TARGET_CRYPTFS_HW_PATH := device/huawei/london/cryptfs_hw #works on Diego, use from device/qcom/common 8.0
 
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
@@ -107,5 +113,5 @@ TW_INCLUDE_FUSE_NTFS := true
 #TW_INCLUDE_NTFS_3G := true #make dependancies chaos, use prebuilt
 
 # Treble
-BOARD_NEEDS_VENDORIMAGE_SYMLINK := true # not sure about it
-TARGET_COPY_OUT_VENDOR := vendor #or system/vendor in TWRP, also not sure, if above is TRUE
+BOARD_NEEDS_VENDORIMAGE_SYMLINK := false
+TARGET_COPY_OUT_VENDOR := vendor

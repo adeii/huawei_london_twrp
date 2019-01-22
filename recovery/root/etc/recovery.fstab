@@ -5,7 +5,7 @@
 /dev/block/mmcblk0                         /mmcblk0        emmc    flags=display="Full dump";backup=1;flashimg
 
 #device                                 mount point      fstype    [device2] [length=]
-/dev/block/bootdevice/by-name/system       /system         ext4    flags=display="System";backup=1  
+/dev/block/bootdevice/by-name/system       /system         ext4    flags=display="System";backup=1
 /dev/block/bootdevice/by-name/vendor       /vendor         ext4    flags=display="Vendor";backup=1
 /dev/block/bootdevice/by-name/product      /product        ext4    flags=display="Product";backup=1
 /dev/block/bootdevice/by-name/version      /version        ext4    flags=display="Version";backup=1
@@ -23,15 +23,19 @@
 /frp		       emmc      /dev/block/bootdevice/by-name/frp				 flags=display="FRP";backup=1;flashimg
 /misc              emmc      /dev/block/bootdevice/by-name/misc              flags=display="Misc";backup=0
 /oeminfo           emmc      /dev/block/bootdevice/by-name/oeminfo           flags=display="OEMinfo";backup=1;flashimg
-/data              f2fs      /dev/block/bootdevice/by-name/userdata          flags=length=-16384;backup=1;encryptable=footer
+#/data              f2fs      /dev/block/bootdevice/by-name/userdata          flags=length=-16384;backup=1;settingsstorage
 /odm		       ext4	     /dev/block/bootdevice/by-name/odm				 flags=display="Odm";backup=1;flashimg;
 /kernel            emmc      /dev/block/bootdevice/by-name/kernel            flags=display="Kernel";backup=1;flashimg
 /ramdisk           emmc      /dev/block/bootdevice/by-name/ramdisk           flags=display="Boot_RamDisk";backup=1;flashimg
 /recovery_ramdisk  emmc      /dev/block/bootdevice/by-name/recovery_ramdisk  flags=display="Recovery_RamDisk";backup=1;flashimg
 /erecovery_ramdisk emmc      /dev/block/bootdevice/by-name/erecovery_ramdisk flags=display="eRecovery_RamDisk";backup=1;flashimg
 /cache             ext4      /dev/block/bootdevice/by-name/cache
-/log               vfat      /dev/block/bootdevice/by-name/log          
+/tz               emmc     /dev/block/bootdevice/by-name/tz           flags=display="Tz";backup=1;flashimg=1
+/persist          ext4     /dev/block/bootdevice/by-name/persist      flags=display="Persist";wipeingui;backup=1
+/keymaster        emmc     /dev/block/bootdevice/by-name/keymaster    flags=display="keymaster";backup=1;flashimg=1
+/keystore           emmc    /dev/block/mmcblk0p6        flags=display="Keystore";backup=1;
+/DDR                emmc    /dev/block/mmcblk0p25       flags=display="DDR";backup=1;
 #/dev/block/sda1             /usb        vfat    flags=display="USB Storage";storage;wipeingui;removable
 /usb_otg           vfat	     /dev/block/sda1      /dev/block/sda             flags=display="USB-OTG";storage;removable;
 /dev/block/mmcblk1p1                       /external_sd    vfat    flags=display="SD card";removable;storage
-#/dev/block/bootdevice/by-name/userdata     /data           f2fs    noatime,nosuid,nodev,discard,inline_data,inline_xattr  #wait,check,length=-16384,fileencryption=aes-256-xts:aes-256-cts
+/dev/block/bootdevice/by-name/userdata     /data           f2fs    noatime,nosuid,nodev,discard,inline_data,inline_xattr  wait,check,length=-16384,fileencryption=aes-256-xts:aes-256-cts

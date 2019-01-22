@@ -21,21 +21,15 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 PRODUCT_PACKAGES += \
     charger_res_images
 
-# Encryption no more, use from /device/qcom/common
-#PRODUCT_PACKAGES += \
-#    libcryptfs_hw
-
-# Kernel
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_PATH)/recovery/kernel:kernel # nope, no more dependancies cycle
-
 # sdcardfs
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sys.sdcardfs=true
+    ro.sys.sdcardfs=true \
+    ro.crypto.state=encrypted \
+    ro.crypto.type=file
 
-# Time Zone data for recovery, not found in 8.0
-#PRODUCT_COPY_FILES += \
-#    bionic/libc/zoneinfo/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
+$(shell mkdir -p $(OUT)/recovery/)
+$(shell mkdir -p $(OUT)/recovery/root/)
+$(shell touch $(OUT)/recovery/root/file_contexts)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := london

@@ -1,0 +1,3 @@
+allow ueventd device:chr_file relabelto;
+allow ueventd bfm_device:chr_file relabelto;
+
