@@ -17,6 +17,7 @@ Release Date | April 2018
     4 - . build/envsetup.sh; lunch omni_london-eng;
     5 - export ALLOW_MISSING_DEPENDENCIES=true; export LC_ALL=C
     6 - . build/envsetup.sh; lunch omni_london-eng
+    7 - patch files, exp. uncheck all in vendor/omni/sepolicy/property_contexts and/or system/core
     7 - mka adbd recoveryimage
     
 -----
