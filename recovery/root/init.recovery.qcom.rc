@@ -34,8 +34,8 @@ service sbinqseecomd /sbin/qseecomd
     seclabel u:r:recovery:s0
 
 on fs
-    wait /dev/block/platform/soc/7824900.sdhci
-    symlink /dev/block/platform/soc/7824900.sdhci /dev/block/bootdevice
+    #wait /dev/block/platform/soc/7824900.sdhci
+    #symlink /dev/block/platform/soc/7824900.sdhci /dev/block/bootdevice
     # Needed to make qseecomd work in recovery
     chmod 0777 /dev/qseecom
     chown system drmrpc /dev/qseecom
