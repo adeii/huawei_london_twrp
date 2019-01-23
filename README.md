@@ -11,7 +11,7 @@ GPU     | Adreno 505
 Shipped Android Version | Android 8.0
 Release Date | April 2018
 
-    1 - repo init --depth=1 -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-7.1
+    1 - repo init --depth=1 -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-8.0
     2 - repo sync --force-sync
     3 - git clone https://github.com/adeii/huawei_london_twrp.git -b omni-7.1 device/huawei/london
     4 - . build/envsetup.sh; lunch omni_london-eng;
