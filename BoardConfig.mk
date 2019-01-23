@@ -112,6 +112,10 @@ TW_INCLUDE_FUSE_EXFAT := true
 TW_INCLUDE_FUSE_NTFS := true
 #TW_INCLUDE_NTFS_3G := true #make dependancies chaos, use prebuilt
 
+# Debug flags
+TWRP_INCLUDE_LOGCAT := true
+TW_EXCLUDE_SUPERSU := true
+
 # Treble
 BOARD_NEEDS_VENDORIMAGE_SYMLINK := true
 TARGET_COPY_OUT_VENDOR := vendor
