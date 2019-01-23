@@ -27,9 +27,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.crypto.state=encrypted \
     ro.crypto.type=file
 
-$(shell mkdir -p $(OUT)/recovery/)
-$(shell mkdir -p $(OUT)/recovery/root/)
-$(shell touch $(OUT)/recovery/root/file_contexts)
+$(shell mkdir -p $(OUT_DIR)/recovery/)
+$(shell mkdir -p $(OUT_DIR)/recovery/root/)
+$(shell touch $(OUT_DIR)/recovery/root/file_contexts)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := london
