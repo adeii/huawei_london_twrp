@@ -18,6 +18,8 @@ Release Date | April 2018
     5 - export ALLOW_MISSING_DEPENDENCIES=true; export LC_ALL=C
     6 - mka adbd recoveryimage
 -----
+add out/target/product/london/system/lib64/libservices.so
+add 6.0 toolbox/ls.c to system/core/toolbox
 -----
 see this: https://github.com/TeamWin/android_device_oneplus_cheeseburger/commit/e684edca5f714a2af163bd33e42725c5828ce397
 or this: https://github.com/chetgurevitch/android_device_huawei_angler/commit/982198a17236ec04c2042a1e7097d8a855b2761e
