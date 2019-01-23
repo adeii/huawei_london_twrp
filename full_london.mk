@@ -31,6 +31,12 @@ $(shell mkdir -p $(OUT)/recovery/)
 $(shell mkdir -p $(OUT)/recovery/root/)
 $(shell touch $(OUT)/recovery/root/file_contexts)
 
+# Hackery
+$(shell mkdir -p $(OUT)/obj/ETC/sepolicy.recovery_intermediates)
+$(shell mkdir -p $(OUT)obj/ETC/sepolicy_intermediates) 
+$(shell cp device/huawei/london/sepolicy $(OUT)/obj/ETC/sepolicy.recovery_intermediates/sepolicy.recovery)
+$(shell cp device/huawei/london/sepolicy $(OUT)/obj/ETC/sepolicy_intermediates/sepolicy)
+
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := london
 PRODUCT_NAME := full_london
