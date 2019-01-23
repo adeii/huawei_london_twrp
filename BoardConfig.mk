@@ -113,5 +113,5 @@ TW_INCLUDE_FUSE_NTFS := true
 #TW_INCLUDE_NTFS_3G := true #make dependancies chaos, use prebuilt
 
 # Treble
-BOARD_NEEDS_VENDORIMAGE_SYMLINK := true
+BOARD_NEEDS_VENDORIMAGE_SYMLINK := false
 TARGET_COPY_OUT_VENDOR := vendor

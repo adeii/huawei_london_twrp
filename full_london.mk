@@ -23,13 +23,14 @@ PRODUCT_PACKAGES += \
 
 # sdcardfs
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sys.sdcardfs=true \
-    ro.crypto.state=encrypted \
-    ro.crypto.type=file
+    ro.sys.sdcardfs=true
+#   ro.crypto.state=encrypted \
+#   ro.crypto.type=file \
+#   ro.property_service.version=2
 
 $(shell mkdir -p $(OUT)/recovery/)
 $(shell mkdir -p $(OUT)/recovery/root/)
-$(shell touch $(OUT)/recovery/root/file_contexts)
+#$(shell touch $(OUT)/recovery/root/file_contexts)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := london
