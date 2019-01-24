@@ -19,7 +19,7 @@ Release Date | April 2018
     6 - . build/envsetup.sh; lunch omni_london-eng
     7 - mka adbd recoveryimage
 -----
-Experiments about adding FBE decrypting of Internal Storage.
+Experiments about adding FBE decrypting of Internal Storage. --- try this: https://github.com/pretoriano80/android_bootable_recovery
 android_system_core/init/builtins.cpp
 646 
 
