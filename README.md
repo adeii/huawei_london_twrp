@@ -22,6 +22,7 @@ Release Date | April 2018
 -----
 Experiments about adding FBE decrypting of Internal Storage.
 android_system_core/init/builtins.cpp
+
 646 
 
         static int do_install_keyring(const std::vector<std::string>& args) {
@@ -42,5 +43,6 @@ android_system_core/init/builtins.cpp
         {"load_persist_props",      {0,     0,    do_load_persist_props}},
         {"load_system_props", {0, 0, do_load_system_props}},
 -----
-see this: https://github.com/TeamWin/android_device_oneplus_cheeseburger/commit/e684edca5f714a2af163bd33e42725c5828ce397
+* see this: https://github.com/TeamWin/android_device_oneplus_cheeseburger/commit/e684edca5f714a2af163bd33e42725c5828ce397
 or this: https://github.com/chetgurevitch/android_device_huawei_angler/commit/982198a17236ec04c2042a1e7097d8a855b2761e
+* could be interesting: https://github.com/LineageOS/android_device_qcom_sepolicy/tree/lineage-15.0/msm8937
