@@ -20,17 +20,25 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
+    
+# Screen density
+PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_PREF_CONFIG := hdpi
+
+# Boot animation
+TARGET_SCREEN_HEIGHT := 1440
+TARGET_SCREEN_WIDTH := 720
 
 # sdcardfs
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sys.sdcardfs=true
-#   ro.crypto.state=encrypted \
-#   ro.crypto.type=file \
-#   ro.property_service.version=2
+    ro.sys.sdcardfs=true \
+    ro.crypto.state=encrypted \
+    ro.crypto.type=file \
+   ro.property_service.version=2
 
 $(shell mkdir -p $(OUT)/recovery/)
 $(shell mkdir -p $(OUT)/recovery/root/)
-#$(shell touch $(OUT)/recovery/root/file_contexts)
+#$(shell touch $(OUT)/recovery/root/file_contexts) #no need for oreo, but nougat
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := london
