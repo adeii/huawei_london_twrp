@@ -84,6 +84,7 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
+TARGET_RECOVERY_QCOM_RTC_FIX := true
 
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
@@ -96,7 +97,7 @@ TW_MAX_BRIGHTNESS := 255
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_SCREEN_BLANK_ON_BOOT := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888" #if not works, restore to RGBX
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/root/etc/recovery.fstab
 BOARD_SUPPRESS_SECURE_ERASE := true
 RECOVERY_SDCARD_ON_DATA := true
@@ -104,6 +105,7 @@ RECOVERY_GRAPHICS_USE_LINELENGTH := true
 
 # Disable Mouse Cursor
 # TW_INPUT_BLACKLIST := "hbtp_vm" #why?
+TW_MTP_DEVICE := "/dev/usb_mtp_gadget" #smg tblteusc has it...
 
 # exFAT FS Support
 TW_INCLUDE_FUSE_EXFAT := true
