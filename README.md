@@ -20,6 +20,9 @@ Release Date | April 2018
     7 - mka adbd recoveryimage
 -----
 Experiments about adding FBE decrypting of Internal Storage. --- try this: https://github.com/pretoriano80/android_bootable_recovery
+ and consider this https://github.com/Xelfmade/android_device_huawei_hwcan/tree/master/recovery/root
+
+
 android_system_core/init/builtins.cpp
 646 
 
