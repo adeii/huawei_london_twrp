@@ -16,13 +16,13 @@
 /dev/block/bootdevice/by-name/modem        /firmware       vfat    ro,relatime
 /dev/block/bootdevice/by-name/log          /log            vfat    nosuid,nodev,uid=0,gid=1000,fmask=0002,dmask=0002
 /dev/block/bootdevice/by-name/aboot        /aboot          emmc    flags=display="Bootloader";backup=1
-/dev/block/bootdevice/by-name/userdata     /data           f2fs    noatime,nosuid,nodev,discard,inline_data,inline_xattr  wait,check,length=-16384,fileencryption=aes-256-xts:aes-256-cts
+/dev/block/bootdevice/by-name/userdata     /data           f2fs    noatime,nosuid,nodev,discard,inline_data,inline_xattr  wait,check,length=-16384,encryptable=footer
 
 /frp		       emmc      /dev/block/bootdevice/by-name/frp				 flags=display="FRP";backup=1;flashimg
 /misc              emmc      /dev/block/bootdevice/by-name/misc              flags=display="Misc";backup=0
 /oeminfo           emmc      /dev/block/bootdevice/by-name/oeminfo           flags=display="OEMinfo";backup=1;flashimg
-#/data              f2fs      /dev/block/bootdevice/by-name/userdata          flags=length=-16384;backup=1;settingsstorage
-/odm		       ext4	     /dev/block/bootdevice/by-name/odm				 flags=display="Odm";backup=1;flashimg;
+/data_image        f2fs      /dev/block/bootdevice/by-name/userdata          flags=length=-16384;encryptable=footer;backup=1;settingsstorage
+/odm		           ext4	     /dev/block/bootdevice/by-name/odm				 flags=display="Odm";backup=1;flashimg;
 /kernel            emmc      /dev/block/bootdevice/by-name/kernel            flags=display="Kernel";backup=1;flashimg
 /ramdisk           emmc      /dev/block/bootdevice/by-name/ramdisk           flags=display="Boot_RamDisk";backup=1;flashimg
 /recovery_ramdisk  emmc      /dev/block/bootdevice/by-name/recovery_ramdisk  flags=display="Recovery_RamDisk";backup=1;flashimg
