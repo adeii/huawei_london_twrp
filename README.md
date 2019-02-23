@@ -20,6 +20,9 @@ Release Date | April 2018
     7 - patch files, exp. uncheck all in vendor/omni/sepolicy/property_contexts and/or system/core
     7 - mka adbd recoveryimage
 -----
+add fb2png https://git.sphere.ly/twrp/android_bootable_recovery/commit/3019a9172b36b9e2033d92dccdb8ff8e2282da7c
+resolution that works should be 720+(stride=16)x1440
+-----
 Experiments about adding FBE decrypting of Internal Storage.
 android_system_core/init/builtins.cpp
 
