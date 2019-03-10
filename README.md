@@ -22,7 +22,7 @@ Release Date | April 2018
 Experiments about adding FBE decrypting of Internal Storage. --- try this: https://github.com/pretoriano80/android_bootable_recovery
  and consider this https://github.com/Xelfmade/android_device_huawei_hwcan/tree/master/recovery/root
 
-
+hmmm: https://github.com/steadfasterX/android_device_lge_g4/commit/c801879b86f519035a3c9dd4c51a6d9fe4778475
 android_system_core/init/builtins.cpp
 646 
 
