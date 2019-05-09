@@ -2,41 +2,74 @@
 # The filesystem that contains the filesystem checker binary (typically /system) cannot
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 # /Full backup
-/dev/block/mmcblk0                         /mmcblk0        emmc    flags=display="Full dump";backup=1;flashimg
+/mmcblk0           emmc   /dev/block/mmcblk0                              flags=display="Full dump";backup=1;flashimg
 
 #device                                 mount point      fstype    [device2] [length=]
-/dev/block/bootdevice/by-name/system       /system         ext4    flags=display="System";backup=1
-/dev/block/bootdevice/by-name/vendor       /vendor         ext4    flags=display="Vendor";backup=1
-/dev/block/bootdevice/by-name/product      /product        ext4    flags=display="Product";backup=1
-/dev/block/bootdevice/by-name/version      /version        ext4    flags=display="Version";backup=1
-/dev/block/bootdevice/by-name/cache        /cache          ext4    flags=display="Cache";backup=1;wipeingui
-/dev/block/bootdevice/by-name/system       /newsys         emmc    flags=backup=1;flashimg
-/dev/block/bootdevice/by-name/cust         /cust           ext4    ro,nosuid,nodev,barrier=1,noauto_da_alloc,discard
-/dev/block/bootdevice/by-name/misc         /misc           emmc    flags=display="Misc";backup=1
-/dev/block/bootdevice/by-name/modem        /firmware       vfat    ro,relatime
-/dev/block/bootdevice/by-name/log          /log            vfat    nosuid,nodev,uid=0,gid=1000,fmask=0002,dmask=0002
-/dev/block/bootdevice/by-name/aboot        /aboot          emmc    flags=display="Bootloader";backup=1
 #/dev/block/bootdevice/by-name/userdata     /data           f2fs    noatime,nosuid,nodev,discard,inline_data,inline_xattr  wait,check,length=-16384,fileencryption=aes-256-xts:aes-256-cts
 
-/frp		       emmc      /dev/block/bootdevice/by-name/frp				 flags=display="FRP";backup=1;flashimg
-/misc              emmc      /dev/block/bootdevice/by-name/misc              flags=display="Misc";backup=0
-/oeminfo           emmc      /dev/block/bootdevice/by-name/oeminfo           flags=display="OEMinfo";backup=1;flashimg
-/data              f2fs      /dev/block/bootdevice/by-name/userdata          flags=length=-16384;backup=1;settingsstorage
-/data_image        emmc      /dev/block/bootdevice/by-name/userdata          flags=display="Data_image";length=-16384;backup=1;flashimg;
-/system_image      emmc      /dev/block/bootdevice/by-name/system            flags=display="System_image";backup=1;flashimg;
-/vendor_image      emmc      /dev/block/bootdevice/by-name/vendor            flags=display="Vendor_image";backup=1
-/odm		       ext4	     /dev/block/bootdevice/by-name/odm				 flags=display="Odm";backup=1;flashimg;
-/kernel            emmc      /dev/block/bootdevice/by-name/kernel            flags=display="Kernel";backup=1;flashimg
-/ramdisk           emmc      /dev/block/bootdevice/by-name/ramdisk           flags=display="Boot_RamDisk";backup=1;flashimg
-/recovery_ramdisk  emmc      /dev/block/bootdevice/by-name/recovery_ramdisk  flags=display="Recovery_RamDisk";backup=1;flashimg
-/erecovery_ramdisk emmc      /dev/block/bootdevice/by-name/erecovery_ramdisk flags=display="eRecovery_RamDisk";backup=1;flashimg
-/cache             ext4      /dev/block/bootdevice/by-name/cache
-/tz                emmc      /dev/block/bootdevice/by-name/tz                flags=display="Tz";backup=1;flashimg=1
-/persist           ext4      /dev/block/bootdevice/by-name/persist           flags=display="Persist";wipeingui;backup=1
-/keymaster         emmc      /dev/block/bootdevice/by-name/keymaster         flags=display="keymaster";backup=1;flashimg=1
-/keystore          emmc      /dev/block/mmcblk0p6                            flags=display="Keystore";backup=1;
-/DDR               emmc      /dev/block/mmcblk0p25                           flags=display="DDR";backup=1;
-/dsp		       emmc	     /dev/block/bootdevice/by-name/dsp	             flags=backup=1;subpartitionof=/firmware
-/aboot		       emmc	     /dev/block/bootdevice/by-name/aboot	         flags=backup=1;display="Bootloader"
-/usb_otg           auto	     /dev/block/sda1      /dev/block/sda             flags=display="USB-OTG";storage;removable;
-/dev/block/mmcblk1p1                       /external_sd    vfat    flags=display="SD card";removable;storage
+/DDR               emmc   /dev/block/mmcblk0p25                           flags=display="DDR";backup=1;flashimg
+/aboot             emmc   /dev/block/bootdevice/by-name/aboot             flags=display="Bootloader";backup=1;flashimg
+/apdp              emmc   /dev/block/bootdevice/by-name/apdp              flags=display="APDP";backup=1;flashimg
+/bootfail_info     emmc   /dev/block/bootdevice/mmcblk0p17                flags=display="Bootfail";backup=1;flashimg
+/cache             ext4   /dev/block/bootdevice/by-name/cache             flags=display="Cache";backup=1;wipeingui
+/cmnlib            emmc   /dev/block/mmcblk0p20                           flags=display="CMNlib";backup=1;flashimg
+/cmnlib64          emmc   /dev/block/mmcblk0p21                           flags=display="CMNlib64";backup=1;flashimg
+/cust              ext4   /dev/block/bootdevice/by-name/cust              flags=display="Cust";backup=1;flashimg
+/data              f2fs   /dev/block/bootdevice/by-name/userdata          flags=length=-16384;backup=1;settingsstorage;encryptable=footer;
+/data_image		     emmc	  /dev/block/mmcblk0p55   	                      flags=display="Data Image";backup=1;flashimg;
+/devcfg            emmc   /dev/block/mmcblk0p4                            flags=display="DevCfg";backup=1;flashimg
+/devinfo           emmc   /dev/block/mmcblk0p27                           flags=display="DevInfo";backup=1;flashimg
+/dip               emmc   /dev/block/mmcblk0p9                            flags=display="Dip";backup=1;flashimg
+/dpo               emmc   /dev/block/mmcblk0p14                           flags=display="Dpo";backup=1;flashimg
+/dsp               ext4   /dev/block/mmcblk0p5                            flags=display="Dsp";backup=1;flashimg
+#/efs1              emmc   /dev/block/bootdevice/by-name/modemst1          flags=display="EFS1";backup=1;flashimg
+#/efs2              emmc   /dev/block/bootdevice/by-name/modemst2          flags=display="EFS2";backup=1;flashimg
+/erecovery_kernel  emmc   /dev/block/bootdevice/by-name/erecovery_kernel  flags=display="eRecovery_Kernel";backup=1;flashimg
+/erecovery_ramdisk emmc   /dev/block/bootdevice/by-name/erecovery_ramdisk flags=display="eRecovery_RamDisk";backup=1;flashimg
+/erecovery_vendor  emmc   /dev/block/bootdevice/by-name/erecovery_ramdisk flags=display="eRecovery_Vendor";backup=1;flashimg
+/external_sd	     vfat	  /dev/block/mmcblk1p1	/dev/block/mmcblk1		    flags=display="MicroSD Card";storage;wipeingui;removable
+/firmware          vfat   /dev/block/bootdevice/by-name/modem             flags=display="Firmware-modem";backup=1;flashimg
+/frp		           emmc   /dev/block/bootdevice/by-name/frp				        flags=display="FRP";backup=1;flashimg
+/fsc		           emmc   /dev/block/bootdevice/by-name/fsc				        flags=display="FSC";backup=1;flashimg
+/fsg		           emmc   /dev/block/bootdevice/by-name/fsg				        flags=display="FSG";backup=1;flashimg
+/hw_init           emmc   /data/hw_init                                   flags=display="hw_init";storage;removable;
+/kernel            emmc   /dev/block/bootdevice/by-name/kernel            flags=display="Kernel";backup=1;flashimg
+/keymaster         emmc   /dev/block/bootdevice/by-name/keymaster         flags=display="Keymaster";backup=1;flashimg
+/keystore          emmc   /dev/block/bootdevice/by-name/keystore          flags=display="Keystore";backup=1;flashimg
+/limits            emmc   /dev/block/mmcblk0p28                           flags=display="Limits";backup=1;flashimg
+/lksecapp          emmc   /dev/block/mmcblk0p11                           flags=display="LKSecApp";backup=1;flashimg
+/log               vfat   /dev/block/bootdevice/by-name/log               flags=display="Log";backup=1;flashimg
+/mcfg              emmc   /dev/block/mmcblk0p36                           flags=display="MCfg";backup=1;flashimg
+/misc              emmc   /dev/block/mmcblk0p31                           flags=display="Misc";backup=1;flashimg
+/modem             emmc   /dev/block/mmcblk0p37                           flags=display="Modem";backup=1;flashimg
+/modemst1          emmc   /dev/block/mmcblk0p32                           flags=display="Modemst1";backup=1;flashimg
+/modemst2          emmc   /dev/block/mmcblk0p33                           flags=display="Modemst2";backup=1;flashimg
+/mota              emmc   /dev/block/mmcblk0p8                            flags=display="Mota";backup=1;flashimg
+/msadp             emmc   /dev/block/mmcblk0p13                           flags=display="MSadp";backup=1;flashimg
+#/newsys            emmc   /dev/block/bootdevice/by-name/system           flags=display="System_image";backup=1;flashimg
+/nff               emmc   /dev/block/mmcblk0p35                           flags=display="NFF";backup=1;flashimg
+/odm		           ext4	  /dev/block/bootdevice/by-name/odm				        flags=display="Odm";backup=1;flashimg;
+/oeminfo           emmc   /dev/block/bootdevice/by-name/oeminfo           flags=display="OEMinfo";backup=1;flashimg
+/pad0              emmc   /dev/block/mmcblk0p18                           flags=display="Pad0";backup=1;flashimg
+/pad1              emmc   /dev/block/mmcblk0p23                           flags=display="Pad1";backup=1;flashimg
+/pad2              emmc   /dev/block/mmcblk0p29                           flags=display="Pad2";backup=1;flashimg
+/patch             emmc   /dev/block/mmcblk0p49                           flags=display="Patch";backup=1;flashimg
+/persist           ext4   /dev/block/bootdevice/by-name/persist           flags=display="Persist";wipeingui;backup=1;flashimg
+/product           ext4   /dev/block/bootdevice/by-name/product           flags=display="Product";backup=1;flashimg
+/ramdisk           emmc   /dev/block/bootdevice/by-name/ramdisk           flags=display="Boot_RamDisk";backup=1;flashimg
+/recovery_ramdisk  emmc   /dev/block/bootdevice/by-name/recovery_ramdisk  flags=display="Recovery_RamDisk";backup=1;flashimg
+/recovery_vendor   emmc   /dev/block/bootdevice/by-name/recovery_vendor   flags=display="Recovery_vendor";backup=1;flashimg
+/rpm               emmc   /dev/block/mmcblk0p2                            flags=display="RPM";backup=1;flashimg
+/rrecord           emmc   /dev/block/mmcblk0p34                           flags=display="RRecord";backup=1;flashimg
+/sbl1              emmc   /dev/block/mmcblk0p1                            flags=display="SBL1";backup=1;flashimg
+/sec               emmc   /dev/block/mmcblk0p26                           flags=display="SEC";backup=1;flashimg
+/ssd               emmc   /dev/block/mmcblk0p16                           flags=display="SSD";backup=1;flashimg
+/syscfg            emmc   /dev/block/mmcblk0p10                           flags=display="SysCfg";backup=1;flashimg
+/system            ext4   /dev/block/bootdevice/by-name/system            flags=display="System";backup=1;flashimg
+/system_image		   emmc	  /dev/block/mmcblk0p54	                          flags=display="System Image";backup=1;flashimg
+/tz                emmc   /dev/block/bootdevice/by-name/tz                flags=display="Tz";backup=1;flashimg
+/usb_otg           auto	  /dev/block/sda1      /dev/block/sda             flags=display="USB-OTG";storage;removable;
+/sdcard            f2fs   /data/media/0                                   flags=display="Internal SD";storage;removable;
+/vendor            ext4   /dev/block/bootdevice/by-name/vendor            flags=display="Vendor";backup=1;flashimg
+/vendor_image		   emmc	  /dev/block/mmcblk0p51                           flags=display="Vendor Image";backup=1;flashimg
+/version           ext4   /dev/block/bootdevice/by-name/version           flags=display="Version";backup=1;flashimg
