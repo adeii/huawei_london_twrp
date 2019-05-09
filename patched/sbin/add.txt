@@ -1,0 +1,1 @@
+some files need to be added to /sbin to enable USB-OTG
