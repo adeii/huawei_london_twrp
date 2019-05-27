@@ -22,17 +22,13 @@
 /dip               emmc   /dev/block/mmcblk0p9                            flags=display="Dip";backup=1;flashimg
 /dpo               emmc   /dev/block/mmcblk0p14                           flags=display="Dpo";backup=1;flashimg
 /dsp               ext4   /dev/block/mmcblk0p5                            flags=display="Dsp";backup=1;flashimg
-#/efs1              emmc   /dev/block/bootdevice/by-name/modemst1          flags=display="EFS1";backup=1;flashimg
-#/efs2              emmc   /dev/block/bootdevice/by-name/modemst2          flags=display="EFS2";backup=1;flashimg
 /erecovery_kernel  emmc   /dev/block/bootdevice/by-name/erecovery_kernel  flags=display="eRecovery_Kernel";backup=1;flashimg
 /erecovery_ramdisk emmc   /dev/block/bootdevice/by-name/erecovery_ramdisk flags=display="eRecovery_RamDisk";backup=1;flashimg
 /erecovery_vendor  emmc   /dev/block/bootdevice/by-name/erecovery_ramdisk flags=display="eRecovery_Vendor";backup=1;flashimg
 /external_sd	     vfat	  /dev/block/mmcblk1p1	/dev/block/mmcblk1		    flags=display="MicroSD Card";storage;wipeingui;removable
-#/firmware          vfat   /dev/block/bootdevice/by-name/modem             flags=display="Firmware-modem";backup=1;flashimg
 /frp		           emmc   /dev/block/bootdevice/by-name/frp				        flags=display="FRP";backup=1;flashimg
 /fsc		           emmc   /dev/block/bootdevice/by-name/fsc				        flags=display="FSC";backup=1;flashimg
 /fsg		           emmc   /dev/block/bootdevice/by-name/fsg				        flags=display="FSG";backup=1;flashimg
-#/hw_init           emmc   /data/hw_init                                   flags=display="hw_init";storage;removable;
 /kernel            emmc   /dev/block/bootdevice/by-name/kernel            flags=display="Kernel";backup=1;flashimg
 /keymaster         emmc   /dev/block/bootdevice/by-name/keymaster         flags=display="Keymaster";backup=1;flashimg
 /keystore          emmc   /dev/block/bootdevice/by-name/keystore          flags=display="Keystore";backup=1;flashimg
@@ -46,7 +42,6 @@
 /modemst2          emmc   /dev/block/mmcblk0p33                           flags=display="Modemst2";backup=1;flashimg
 /mota              emmc   /dev/block/mmcblk0p8                            flags=display="Mota";backup=1;flashimg
 /msadp             emmc   /dev/block/mmcblk0p13                           flags=display="MSadp";backup=1;flashimg
-#/newsys            emmc   /dev/block/bootdevice/by-name/system           flags=display="System_image";backup=1;flashimg
 /nff               emmc   /dev/block/mmcblk0p35                           flags=display="NFF";backup=1;flashimg
 /odm		           ext4	  /dev/block/bootdevice/by-name/odm				        flags=display="Odm";backup=1;flashimg;
 /oeminfo           emmc   /dev/block/bootdevice/by-name/oeminfo           flags=display="OEMinfo";backup=1;flashimg
@@ -69,7 +64,6 @@
 /system_image		   emmc	  /dev/block/mmcblk0p54	                          flags=display="System Image";backup=1;flashimg
 /tz                emmc   /dev/block/bootdevice/by-name/tz                flags=display="Tz";backup=1;flashimg
 /usb_otg           auto	  /dev/block/sda1      /dev/block/sda             flags=display="USB-OTG";storage;removable;
-#/sdcard            f2fs   /data/media/0                                   flags=display="Internal SD";storage;removable;
 /vendor            ext4   /dev/block/bootdevice/by-name/vendor            flags=display="Vendor";backup=1;flashimg
 /vendor_image		   emmc	  /dev/block/mmcblk0p51                           flags=display="Vendor Image";backup=1;flashimg
 /version ext4 /dev/block/bootdevice/by-name/version flags=display="Version";backup=1;flashimg
