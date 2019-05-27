@@ -28,7 +28,7 @@
 /erecovery_ramdisk emmc   /dev/block/bootdevice/by-name/erecovery_ramdisk flags=display="eRecovery_RamDisk";backup=1;flashimg
 /erecovery_vendor  emmc   /dev/block/bootdevice/by-name/erecovery_ramdisk flags=display="eRecovery_Vendor";backup=1;flashimg
 /external_sd	     vfat	  /dev/block/mmcblk1p1	/dev/block/mmcblk1		    flags=display="MicroSD Card";storage;wipeingui;removable
-/firmware          vfat   /dev/block/bootdevice/by-name/modem             flags=display="Firmware-modem";backup=1;flashimg
+#/firmware          vfat   /dev/block/bootdevice/by-name/modem             flags=display="Firmware-modem";backup=1;flashimg
 /frp		           emmc   /dev/block/bootdevice/by-name/frp				        flags=display="FRP";backup=1;flashimg
 /fsc		           emmc   /dev/block/bootdevice/by-name/fsc				        flags=display="FSC";backup=1;flashimg
 /fsg		           emmc   /dev/block/bootdevice/by-name/fsg				        flags=display="FSG";backup=1;flashimg
@@ -69,7 +69,7 @@
 /system_image		   emmc	  /dev/block/mmcblk0p54	                          flags=display="System Image";backup=1;flashimg
 /tz                emmc   /dev/block/bootdevice/by-name/tz                flags=display="Tz";backup=1;flashimg
 /usb_otg           auto	  /dev/block/sda1      /dev/block/sda             flags=display="USB-OTG";storage;removable;
-/sdcard            f2fs   /data/media/0                                   flags=display="Internal SD";storage;removable;
+#/sdcard            f2fs   /data/media/0                                   flags=display="Internal SD";storage;removable;
 /vendor            ext4   /dev/block/bootdevice/by-name/vendor            flags=display="Vendor";backup=1;flashimg
 /vendor_image		   emmc	  /dev/block/mmcblk0p51                           flags=display="Vendor Image";backup=1;flashimg
 /version           ext4   /dev/block/bootdevice/by-name/version           flags=display="Version";backup=1;flashimg
