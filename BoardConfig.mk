@@ -63,6 +63,7 @@ include vendor/omni/sepolicy/sepolicy.mk
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
+TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/commonsys/cryptfs_hw
 TW_USE_NEW_MINADBD := true
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_FBE := true
@@ -110,7 +111,7 @@ TW_INCLUDE_FUSE_EXFAT := true
 
 # NTFS Support
 TW_INCLUDE_FUSE_NTFS := true
-#TW_INCLUDE_NTFS_3G := true #make dependancies chaos, use prebuilt
+TW_INCLUDE_NTFS_3G := true #make dependancies chaos, use prebuilt
 
 # Treble
 BOARD_NEEDS_VENDORIMAGE_SYMLINK := true
