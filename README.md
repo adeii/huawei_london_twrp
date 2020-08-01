@@ -1,7 +1,8 @@
 TeamWin Recovery Project
-omni-7.1 branch, still no working MTP and FBE
+omni-7.1 branch, still no working FBE
 
-Device configuration for Huawei Y7 Prime 2018 (LDN-L21B)
+Device configuration for 
+Huawei Y7 Prime 2018 (LDN-L21B)
 =====================================================
 
 Basic   | Spec Sheet
@@ -22,6 +23,10 @@ Release Date | April 2018
 -----
 add fb2png https://git.sphere.ly/twrp/android_bootable_recovery/commit/3019a9172b36b9e2033d92dccdb8ff8e2282da7c
 resolution that works should be 720+(stride=16)x1440
+
+unpack TWRP multifile backup like:
+   
+    cat system.ext4.win??? | tar xvfiz -
 -----
 Experiments about adding FBE decrypting of Internal Storage.
 android_system_core/init/builtins.cpp
