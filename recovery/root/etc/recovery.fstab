@@ -59,6 +59,7 @@
 /sbl1              emmc   /dev/block/mmcblk0p1                            flags=display="SBL1";backup=1;flashimg
 /sec               emmc   /dev/block/mmcblk0p26                           flags=display="SEC";backup=1;flashimg
 /ssd               emmc   /dev/block/mmcblk0p16                           flags=display="SSD";backup=1;flashimg
+/storage           auto   /sdcard                                         flags=fsflags="bind";display="Internal Storage";backup=1;usermrf;ignoreblkid
 /syscfg            emmc   /dev/block/mmcblk0p10                           flags=display="SysCfg";backup=1;flashimg
 /system            ext4   /dev/block/bootdevice/by-name/system            flags=display="System";backup=1;flashimg
 /system_image		   emmc	  /dev/block/mmcblk0p54	                          flags=display="System Image";backup=1;flashimg
