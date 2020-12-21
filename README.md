@@ -19,6 +19,13 @@ Release Date | April 2018
     5 - export ALLOW_MISSING_DEPENDENCIES=true; export LC_ALL=C
     6 - mka adbd recoveryimage
 -----
+For Orange Fox Recovery Project - see guide:
+https://wiki.orangefox.tech/en/dev/building
+
+1 - repo init -u https://gitlab.com/OrangeFox/Manifest.git -b fox_9.0
+5b - export OF_DISABLE_MIUI_SPECIFIC_FEATURES=1; export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
+
+-----
 
 For Sky Hawk Recovery Project - use:
 
