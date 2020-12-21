@@ -22,7 +22,10 @@ Release Date | April 2018
 
 For Sky Hawk Recovery Project - use:
 
-repo init -u git://github.com/SKYHAWK-Recovery-Project/platform_manifest_twrp_omni.git -b android-9.0
+repo init -u git://github.com/SKYHAWK-Recovery-Project/platform_manifest_twrp_omni.git -b android-9.0 (EMPTY)
+try project https://github.com/SHRP/shrp_bootable_recovery
+try guide https://shrp.github.io/#/guide?id=build-shrp
+
 
 add to BoardConfig.mk
 
