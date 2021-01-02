@@ -16,7 +16,7 @@ Release Date | April 2018
     2 - repo sync --force-sync
     3 - git clone https://github.com/adeii/huawei_london_twrp.git -b omni-9.0 device/huawei/london
     4 - . build/envsetup.sh; lunch omni_london-eng;
-    5 - export ALLOW_MISSING_DEPENDENCIES=true; export LC_ALL=C
+    5 - export ALLOW_MISSING_DEPENDENCIES=true; export LC_ALL=C; sudo apt install libncurses5;
     6 - mka adbd recoveryimage
 -----
 For Orange Fox Recovery Project - see guide:
