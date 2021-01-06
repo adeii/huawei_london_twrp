@@ -104,14 +104,14 @@ RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TW_INCLUDE_FB2PNG := true
 
 # Disable Mouse Cursor
-# TW_INPUT_BLACKLIST := "hbtp_vm" #why?
+TW_INPUT_BLACKLIST := "hbtp_vm" #why? no touchscreen support maybe.
 
 # exFAT FS Support
 TW_INCLUDE_FUSE_EXFAT := true
 
 # NTFS Support
 TW_INCLUDE_FUSE_NTFS := true
-#TW_INCLUDE_NTFS_3G := true #make dependancies chaos, use prebuilt
+TW_INCLUDE_NTFS_3G := true #make dependancies chaos, use prebuilt
 
 # Debug flags
 TWRP_INCLUDE_LOGCAT := true
