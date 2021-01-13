@@ -34,7 +34,6 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 BOARD_CUSTOM_BOOTIMG_MK := device/huawei/london/custombootimg.mk
 TW_INPUT_BLACKLIST := "hbtp_vm"
 include $(LOCAL_PATH)/kernel.mk
-#include device/generic/twrpbuilder/BoardConfig64.mk
 
 # Architecture
 TARGET_ARCH := arm64
