@@ -1,0 +1,27 @@
+mkdir ~/OrangeFox && cd ~/OrangeFox
+repo init -u https://gitlab.com/OrangeFox/Manifest.git -b fox_9.0
+repo sync -j8 --force-sync
+git clone https://github.com/adeii/huawei_london_twrp.git -b omni-8.1 device/huawei/london
+
+rm -rf system/sepolicy
+git clone https://github.com/omnirom/android_system_sepolicy -b android-8.1 sepolicy
+
+cp ~/OrangeFox/device/huawei/london/SEAndroid.mrk ~/OrangeFox/system/sepolicy/Android.mk
+cp ~/OrangeFox/device/huawei/london/BRAndroid.mrk ~/OrangeFox/bootable/recovery/sepolicy/Android.mk
+
+. build/envsetup.sh
+export ALLOW_MISSING_DEPENDENCIES=true
+export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
+export LC_ALL="C"
+export OF_DISABLE_MIUI_SPECIFIC_FEATURES=1
+lunch omni_london-eng
+
+mkdir out/target/product/london/recovery     
+mkdir out/target/product/london/recovery/root
+touch out/target/product/london/recovery/root/vendor_file_contexts
+touch out/target/product/london/recovery/root/vendor_property_contexts
+
+make -j16 recoveryimage
+
+export version=$(cat bootable/recovery/variables.h | grep "define FOX_MAIN_VERSION_STR" | cut -d '"' -f2)
+cp ~/OrangeFox/out/target/product/london/OrangeFox-Unofficial-london.img ~/OrangeFox/OrangeFox-$version-london-$(date +"%Y%m%d").img

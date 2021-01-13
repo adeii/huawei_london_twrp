@@ -1,0 +1,15 @@
+cd ~/ && mkdir twrp
+wget -q https://ava1.androidfilehost.com/dl/4p_Jt6qDhIAMh_ZGTj_3vA/1610568006/818070582850494375/omni_twrp-8.1-20180221-norepo.tar.xz -O $HOME/twrp.tar.xz
+tar -xJf twrp.tar.xz --directory ~/ade/twrp/ && rm twrp.tar.xz
+cd ~/twrp/
+git clone https://github.com/adeii/huawei_london_twrp.git -b omni-8.1 device/huawei/london
+git clone https://github.com/TwrpBuilder/device_generic_twrpbuilder.git device/generic/twrpbuilder
+rm -rf prebuilts/clang/host/linux-x86
+git clone https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86 prebuilts/clang/host/linux-x86 -b android-7.0.0_r21 --depth=1
+rm -rf bootable/recovery
+git clone https://github.com/TeamWin/android_bootable_recovery.git -b android-9.0 bootable/recovery --depth=1
+. build/envsetup.sh
+lunch omni_london-eng
+make -j16 recoveryimage
+export version=$(cat bootable/recovery/variables.h | grep "define TW_MAIN_VERSION_STR" | cut -d '"' -f2)
+cp ~/twrp/out/target/product/london/recovery.img ~/twrp/TWRP-$version-london-$(date +"%Y%m%d").img
