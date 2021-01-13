@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2017 The Android Open Source Project
+# Copyright (C) 2018 The TwrpBuilder Open-Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,19 +14,9 @@
 # limitations under the License.
 #
 
-# Specify phone tech before including full_phone
-$(call inherit-product, vendor/omni/config/gsm.mk)
-
-# Inherit from the common Open Source product configuration
-#$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
-
-$(call inherit-product, device/huawei/london/full_london.mk)
-
-# Inherit some common Omni stuff.
-$(call inherit-product, vendor/omni/config/common.mk)
-
-PRODUCT_NAME := omni_london
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 PRODUCT_DEVICE := london
-PRODUCT_BRAND := Huawei
-PRODUCT_MODEL := Nexus Y7 Prime 2018
+PRODUCT_NAME := omni_london
+PRODUCT_BRAND := huawei
+PRODUCT_MODEL := Y7 Prime 2018
 PRODUCT_MANUFACTURER := Huawei
