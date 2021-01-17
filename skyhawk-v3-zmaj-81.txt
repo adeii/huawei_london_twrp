@@ -1,0 +1,35 @@
+mkdir ~/SHRP && cd ~/SHRP
+wget -q https://androidfilehost.com/?fid=818070582850494375 -O twrp.tar.xz
+tar -xJf twrp.tar.xz --directory ~/SHRP/ && rm twrp.tar.xz
+
+rm -rf prebuilts/clang/host/linux-x86
+git clone https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86 prebuilts/clang/host/linux-x86 -b android-7.0.0_r21 --depth=1
+
+rm -rf bootable/recovery
+git clone https://github.com/SHRP/bootable_recovery.git -b android-9.0 bootable/recovery --depth=1
+wget https://raw.githubusercontent.com/omnirom/android_bionic/android-9.0/libc/include/langinfo.h -O bionic/libc/include/langinfo.h
+wget https://raw.githubusercontent.com/omnirom/android_bionic/android-9.0/libc/include/nl_types.h -O bionic/libc/include/nl_types.h
+
+git clone https://github.com/SHRP/android_vendor_shrp.git -b v3 vendor/shrp --depth=1
+git clone https://github.com/SHRP/android_system_update_engine.git -b android-8.1 system/update_engine --depth=1
+git clone https://github.com/adeii/huawei_london_twrp.git -b omni-8.1 device/huawei/london
+
+. build/envsetup.sh
+export ALLOW_MISSING_DEPENDENCIES=true
+export LC_ALL="C"
+export oc=0
+export SHRP_PATH=device/huawei/london
+export SHRP_MAINTAINER=none
+export SHRP_DEVICE_CODE=london
+export SHRP_REC_TYPE=Treble
+export SHRP_DEVICE_TYPE=A_Only
+export SHRP_EXTERNAL=/external_sd
+export SHRP_INTERNAL=/sdcard
+export SHRP_OTG=/usb_otg
+export SHRP_FLASH=1
+export SHRP_REC=/dev/block/mmcblk0p43
+lunch omni_london-eng
+
+make -j16 recoveryimage
+
+cp ~/SHRP/out/target/product/london/recovery.img ~/SHRP/SkyHawk-v3.0-london-$(date +"%Y%m%d").img

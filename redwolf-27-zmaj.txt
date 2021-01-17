@@ -1,0 +1,19 @@
+mkdir ~/RW && cd ~/RW
+repo init --depth=1 -u git://github.com/RedWolfRecovery/rw_manifest.git -b rw
+repo sync -j8 --force-sync
+git clone https://github.com/adeii/huawei_london_twrp.git -b omni-8.1 device/huawei/london
+rm -rf /device/xiaomi
+
+#cp device/huawei/london/twrp-functions.cpp  bootable/recovery/twrp-functions.cpp
+
+. build/envsetup.sh
+export ALLOW_MISSING_DEPENDENCIES=true
+export LC_ALL="C"
+export RW_USER_IS_PIRATE=0
+export TARGET_2ND_CPU_VARIANT=cortex-a53
+lunch omni_london-eng
+
+make -j16 recoveryimage
+
+export version=$(cat bootable/recovery/Android.mk | grep "export RW_DEVICE_VERSION=" | cut -d '"' -f2)
+cp out/target/product/london/recovery.img RedWolf-027-london-$(date +"%Y%m%d").img
