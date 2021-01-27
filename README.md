@@ -20,4 +20,3 @@ Release Date | April 2018
     5 - . build/envsetup.sh; lunch omni_london-eng;
     6 - export ALLOW_MISSING_DEPENDENCIES=true; export LC_ALL=C
     7 - mka adbd recoveryimage
-
