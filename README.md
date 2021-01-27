@@ -1,5 +1,6 @@
 TeamWin Recovery Project
-omni-9.0 branch, still no working MTP and FBE
+omni-10.0 branch, still no FBE,
+should be useful for Android 10/11-based custom roms *not built yet
 
 Device configuration for Huawei Y7 Prime 2018 (LDN-L21B)
 =====================================================
@@ -11,38 +12,11 @@ GPU     | Adreno 505
 Shipped Android Version | Android 8.0
 Release Date | April 2018
 
-    1 - repo init --depth=1 -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
+    1 - repo init --depth=1 -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-10.0
     (if can not boot, use branch twrp-7.1)
     2 - repo sync --force-sync
-    3 - git clone https://github.com/adeii/huawei_london_twrp.git -b omni-9.0 device/huawei/london
-    4 - . build/envsetup.sh; lunch omni_london-eng;
-    5 - export ALLOW_MISSING_DEPENDENCIES=true; export LC_ALL=C; sudo apt install libncurses5;
-    6 - mka adbd recoveryimage
------
-For Orange Fox Recovery Project - see guide:
-https://wiki.orangefox.tech/en/dev/building
-
-1 - repo init -u https://gitlab.com/OrangeFox/Manifest.git -b fox_9.0
-5b - export OF_DISABLE_MIUI_SPECIFIC_FEATURES=1; export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
-
------
-
-For Sky Hawk Recovery Project - use:
-
-repo init -u git://github.com/SKYHAWK-Recovery-Project/platform_manifest_twrp_omni.git -b android-9.0 (EMPTY)
-try project https://github.com/SHRP/shrp_bootable_recovery
-try guide https://shrp.github.io/#/guide?id=build-shrp
-
-
-add to BoardConfig.mk
-
-SHRP_PATH := device/huawei/london
-SHRP_MAINTAINER := none
-SHRP_DEVICE_CODE := L21B
-SHRP_REC_TYPE := Treble
-SHRP_DEVICE_TYPE := A_Only
-SHRP_EXTERNAL := /external_sd
-SHRP_INTERNAL := /sdcard
-SHRP_OTG := /usb_otg
-SHRP_FLASH := 1
-SHRP_REC := /dev/block/bootdevice/by-name/recovery_ramdisk
+    3 - git clone https://github.com/adeii/huawei_london_twrp.git -b omni-10.0 device/huawei/london
+    4 - look for new commits @ https://github.com/TeamWin/android_bootable_recovery/commits/android-10.0
+    5 - . build/envsetup.sh; lunch omni_london-eng;
+    6 - export ALLOW_MISSING_DEPENDENCIES=true; export LC_ALL=C
+    7 - mka adbd recoveryimage
