@@ -10,6 +10,7 @@ rm -rf prebuilts/clang/host/linux-x86
 git clone https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86 prebuilts/clang/host/linux-x86 -b android-7.0.0_r21 --depth=1
 rm -rf bootable/recovery
 git clone https://github.com/TeamWin/android_bootable_recovery.git -b android-9.0 bootable/recovery --depth=1
+export ALLOW_MISSING_DEPENDENCIES=true
 . build/envsetup.sh
 lunch omni_london-eng
 make -j16 recoveryimage
