@@ -6,12 +6,13 @@ repo init --depth=1 -u git://github.com/minimal-manifest-twrp/platform_manifest_
 repo sync
 git clone https://github.com/adeii/huawei_london_twrp.git -b omni-8.1 device/huawei/london
 git clone https://github.com/TwrpBuilder/device_generic_twrpbuilder.git device/generic/twrpbuilder
-rm -rf prebuilts/clang/host/linux-x86
-git clone https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86 prebuilts/clang/host/linux-x86 -b android-7.0.0_r21 --depth=1
-rm -rf bootable/recovery
-git clone https://github.com/TeamWin/android_bootable_recovery.git -b android-9.0 bootable/recovery --depth=1
+# rm -rf prebuilts/clang/host/linux-x86
+# git clone https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86 prebuilts/clang/host/linux-x86 -b android-7.0.0_r21 --depth=1
+# rm -rf bootable/recovery
+# git clone https://github.com/TeamWin/android_bootable_recovery.git -b android-9.0 bootable/recovery --depth=1
 export ALLOW_MISSING_DEPENDENCIES=true
 . build/envsetup.sh
+touch device/huawei/london/dummykernel
 lunch omni_london-eng
 make -j16 recoveryimage
 export version=$(cat bootable/recovery/variables.h | grep "define TW_MAIN_VERSION_STR" | cut -d '"' -f2)
