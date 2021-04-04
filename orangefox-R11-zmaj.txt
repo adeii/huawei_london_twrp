@@ -4,7 +4,7 @@ repo sync -j8 --force-sync
 git clone https://github.com/adeii/huawei_london_twrp.git -b omni-8.1 device/huawei/london
 
 rm -rf system/sepolicy
-git clone https://github.com/omnirom/android_system_sepolicy -b android-8.1 sepolicy
+git clone https://github.com/omnirom/android_system_sepolicy -b android-8.1 system/sepolicy
 
 cp ~/OrangeFox/device/huawei/london/SEAndroid.mrk ~/OrangeFox/system/sepolicy/Android.mk
 cp ~/OrangeFox/device/huawei/london/BRAndroid.mrk ~/OrangeFox/bootable/recovery/sepolicy/Android.mk
