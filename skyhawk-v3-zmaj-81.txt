@@ -29,6 +29,7 @@ export SHRP_OTG=/usb_otg
 export SHRP_FLASH=1
 export SHRP_REC=/dev/block/mmcblk0p43
 lunch omni_london-eng
+touch device/huawei/london/dummykernel
 
 make -j16 recoveryimage
 
