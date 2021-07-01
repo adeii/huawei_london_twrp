@@ -33,4 +33,5 @@ touch device/huawei/london/dummykernel
 
 make -j16 recoveryimage
 
-cp ~/SHRP/out/target/product/london/recovery.img ~/SHRP/SkyHawk-v3.0-london-$(date +"%Y%m%d").img
+export ver=$(cat bootable/recovery/SHRPVARS.cpp | grep -w "shrp_ver" | cut -d ',' -f2 | cut -d '"' -f2)
+cp ~/SHRP/out/target/product/london/recovery.img ~/SHRP/SkyHawk-$ver-london-$(date +"%Y%m%d").img
