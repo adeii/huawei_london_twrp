@@ -1,6 +1,11 @@
 mkdir ~/OrangeFox && cd ~/OrangeFox
-repo init -u https://gitlab.com/OrangeFox/Manifest.git -b fox_9.0
-repo sync -j8 --force-sync
+  #repo init -u https://gitlab.com/OrangeFox/Manifest.git -b fox_9.0
+  #repo sync -j8 --force-sync
+  #after changes, now make GitLab account and use this below
+git clone https://gitlab.com/OrangeFox/sync.git
+cd ~/OrangeFox_sync/sync/
+./orangefox_sync.sh --branch 9.0 --path ~/fox_9.0
+
 git clone https://github.com/adeii/huawei_london_twrp.git -b omni-8.1 device/huawei/london
 
 rm -rf system/sepolicy
