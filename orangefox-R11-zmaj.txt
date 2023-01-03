@@ -4,7 +4,7 @@ mkdir ~/OrangeFox && cd ~/OrangeFox
   #after changes, now make GitLab account and use this below
 git clone https://gitlab.com/OrangeFox/sync.git
 cd ~/OrangeFox_sync/sync/
-./orangefox_sync.sh --branch 9.0 --path ~/fox_9.0
+./orangefox_sync.sh --branch 11.0 --path ~/OrangeFox
 
 git clone https://github.com/adeii/huawei_london_twrp.git -b omni-8.1 device/huawei/london
 
